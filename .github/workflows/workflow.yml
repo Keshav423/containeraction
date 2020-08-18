@@ -1,1 +1,20 @@
 name: Container Image CI
+on: [push]
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        
+      - name: run the action
+        id: hello
+        uses: ./
+        with:
+          myInput: 'Keshav'
+          
+      - name: output the memory
+        run: |
+          echo ${{ steps.hello.outputs.memory }}
+          echo "total memory successfully output"
+    
